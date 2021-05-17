@@ -18,7 +18,7 @@ class Default_m extends CI_Model
     {
         return $this->db->get_where($table, $where);
     }
-    
+
     function getWhereOne($table, $at1, $where)
     {
         $this->db->select('*');
@@ -26,7 +26,7 @@ class Default_m extends CI_Model
         $this->db->where($at1, $where);
         return $this->db->get();
     }
-    
+
     function getWhereOrTwo($table, $at1, $at2, $where, $where2)
     {
         $this->db->select('*');
@@ -109,6 +109,13 @@ class Default_m extends CI_Model
         return $this->db->get($table1);
     }
 
+    public function getAllTwoTableNotIn($table1, $table2, $on, $order)
+    {
+        $this->db->join($table2, $on);
+        $this->db->order_by($order, 'DESC');
+        return $this->db->or_where_not_in($table1);
+    }
+
     function getAllTwoTableOr($table1, $table2, $on, $order)
     {
         $this->db->join($table2, $on);
@@ -121,7 +128,7 @@ class Default_m extends CI_Model
         $this->db->join($table2, $on);
         return $this->db->get_where($table1, $where);
     }
-    
+
     function getWhereTwoTableAt($table1, $table2, $on, $at, $where)
     {
         $this->db->join($table2, $on);
@@ -153,7 +160,8 @@ class Default_m extends CI_Model
     // ======= end join 2 table =======
 
     // ======= join 3 table =======
-    function getAllThreeTableMapel($table1, $table2, $table3, $on1, $on2, $order) {
+    function getAllThreeTableMapel($table1, $table2, $table3, $on1, $on2, $order)
+    {
         $this->db->select('mapel.id_mapel, mapel.id_guru, mapel.id_kelas, mapel.nama_mapel, guru.nama_guru, kelas.nama_kelas, kelas.kelas_jurusan, kelas.kode_jurusan'); // <-- There is never any reason to write this line!
         $this->db->from($table1);
         $this->db->join($table2, $on1);
@@ -177,7 +185,7 @@ class Default_m extends CI_Model
         $this->db->join($table3, $on2);
         return $this->db->get_where($table1, $where);
     }
-    
+
     function getWhereThreeTableAt($table1, $table2, $table3, $on1, $on2, $at, $where)
     {
         $this->db->select('*');
@@ -213,7 +221,7 @@ class Default_m extends CI_Model
         $this->db->join($table4, $on3);
         return $this->db->get_where($table1, $where);
     }
-    
+
     function getWhereFourTableNilai($table1, $table2, $table3, $table4, $on1, $on2, $on3, $at, $at2, $where, $where2)
     {
         $this->db->join($table2, $on1);
@@ -223,7 +231,7 @@ class Default_m extends CI_Model
         $this->db->or_where($at2, $where2);
         return $this->db->get($table1);
     }
-    
+
     function getWhereFourTableNilaiAnd($table1, $table2, $table3, $table4, $on1, $on2, $on3, $at, $at2, $where, $where2)
     {
         $this->db->join($table2, $on1);

@@ -15,7 +15,7 @@
             <select id="id_guru" class="form-control select2bs4 <?= form_error('id_guru') ? 'is-invalid' : null; ?>" name="id_guru">
                 <option value="">-- Pilih Guru --</option>
                 <?php foreach ($guru as $g) : ?>
-                <option value="<?= $g->id_guru; ?>"><?= $g->nama_guru; ?></option>
+                    <option value="<?= $g->id_guru; ?>"><?= $g->nama_guru; ?></option>
                 <?php endforeach; ?>
             </select>
             <?= form_error('id_guru'); ?>
@@ -32,7 +32,7 @@
                         <option value="XII">XII</option>
                     </select>
                     <?= form_error('nama_kelas'); ?>
-                </div>  
+                </div>
             </div>
 
             <div class="col-sm-8">
